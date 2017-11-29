@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.util.Random;
 public class ExtraCredit2A extends Application {
-	static Pane p = new Pane();
 	static int num=0;
 
 	public static void main (String []args){
@@ -27,6 +26,7 @@ public class ExtraCredit2A extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception, InterruptedException {
+		Pane p = new Pane();
 		Image []d = new Image[6];
 		d[5] = new Image	("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Dice-6a.svg/557px-Dice-6a.svg.png");
 		d[4] = new Image	("https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Dice-5.svg/600px-Dice-5.svg.png");
@@ -61,7 +61,7 @@ public class ExtraCredit2A extends Application {
 		q.setY(150);
 
 		Random ran = new Random();
-		num = ran.nextInt(5);
+		num = ran.nextInt(6);
 		System.out.println(num);
 
 
@@ -118,6 +118,22 @@ public class ExtraCredit2A extends Application {
 		Text text = new Text("Guess a number 1-6:");
 		text.setX(25);
 		text.setY(100);
+		Button ng = new Button("New Game");
+		ng.setLayoutX(25);
+		ng.setLayoutY(520);
+		ng.setOnAction(new EventHandler<ActionEvent>(){
+			public void handle(ActionEvent e){
+				try {
+					start(primaryStage);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		Button e = new Button("Exit");
 		e.setLayoutX(25);
@@ -158,7 +174,7 @@ public class ExtraCredit2A extends Application {
 
 
 
-		p.getChildren().addAll(e,text,txt,guess,q,dice);
+		p.getChildren().addAll(e,text,txt,guess,q,dice,ng);
 
 		Scene s = new Scene(p,600,600);
 
